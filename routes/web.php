@@ -15,3 +15,7 @@ Route::get('/', function(){
     return view('auth');
 });
 Route::post('/', 'ResumeController@ShowResume');
+
+Route::get('/test', function(){
+    return view('test');
+});
