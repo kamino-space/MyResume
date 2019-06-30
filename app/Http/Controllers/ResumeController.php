@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Resume;
 use App\Config;
-use PHPUnit\Runner\Exception;
 
 class ResumeController extends Controller
 {
-    private $configs=[];
+    private $config = [];
+    private $resume = [];
+    private $data = [];
 
     public function ShowResume(Request $request)
     {
@@ -22,24 +23,25 @@ class ResumeController extends Controller
         if (count($resumes) == 0) {
             return redirect('/?keyerror');
         }
-        foreach(Config::all() as $item){
-            $this->configs[$item['name']]=$item['value'];
+        $this->resume = $resumes[0];
+        $this->data = json_decode($this->resume['data'], true);
+        foreach (Config::all() as $item) {
+            $this->config[$item['name']] = $item['value'];
         }
-        return view('templates.'.$resumes[0]['template'], $this->ResumeData($resumes[0]));
+        return view('templates.' . $this->resume['template'], $this->ResumeData());
     }
 
-    private function ResumeData($resume)
+    private function ResumeData()
     {
-        return [
-            'name'=>$this->get('name'),
-        ];
+        $params = [];
+        foreach (['name', 'contact', 'application', 'info', 'description'] as $name) {
+            $params[$name] = $this->get($name);
+        }
+        return $params;
     }
 
-    private function get($name){
-        try{
-            return $this->configs[$name];
-        }catch(Exception $e){
-            return null;
-        }
+    private function get($name)
+    {
+        return array_key_exists($name, $this->data) ? $this->data[$name] : (array_key_exists($name, $this->config) ? $this->config[$name] : null);
     }
 }

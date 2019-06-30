@@ -20,8 +20,9 @@ class ConfigsSeeder extends Seeder
             ['wechat', 'chen1019728153'],
             ['QQ', '1019728153'],
             ['sex', '男'],
-            ['blog','https://blog.aikamino.cn'],
-            ['Github','https://github.com/kamino-space']
+            ['blog', 'https://blog.aikamino.cn'],
+            ['GithubID', 'kamino-space'],
+            ['Github', 'https://github.com/kamino-space']
         ];
         foreach ($configs as $config) {
             DB::table('configs')->insert([
