@@ -13,8 +13,6 @@ class ResumesSeeder extends Seeder
     {
         DB::table('resumes')->insert([
             'key' => 'alibaba',
-            'template' => 'default',
-            'style' => 'default',
             'data' => '{
                 "name": "Ahaha",
                 "photo": "https://static.isdut.cn/ii/images/2019/06/30/7b31087dfb40d123a38390c28a947568.jpg",
@@ -53,7 +51,7 @@ class ResumesSeeder extends Seeder
                         "end": "2017"
                     }
                 ],
-                "reward": [
+                "award": [
                     "大学英语四级500分",
                     "大学英语六级600分",
                     "计算机二级C语言证书",
@@ -146,7 +144,9 @@ class ResumesSeeder extends Seeder
                     "tensorflow",
                     "MySQL",
                     "Redis"
-                ]
+                ],
+                "style": "default",
+                "template": "default"
             }',
         ]);
     }
