@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Resumes extends Model
+class Reader extends Model
 {
     //
 }
