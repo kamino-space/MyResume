@@ -16,6 +16,6 @@ Route::get('/', function(){
 });
 Route::post('/', 'ResumeController@ShowResume');
 
-Route::get('/test', function(){
-    return view('test');
+Route::get('/show', function(){
+    return view('show');
 });
