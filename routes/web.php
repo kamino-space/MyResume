@@ -11,11 +11,9 @@
 |
 */
 
-Route::get('/', function(){
-    return view('auth');
+Route::get('/', function () {
+    return view('show');
 });
 Route::post('/', 'ResumeController@ShowResume');
 
-Route::get('/show', function(){
-    return view('show');
-});
+Route::get('/test', 'ResumeController@ShowResume');

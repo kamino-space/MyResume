@@ -41,7 +41,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name:"LoadingComponent"
+};
 </script>
 
 <style>

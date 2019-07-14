@@ -3,14 +3,17 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import ElementUI from 'element-ui';
-import Auth from './components/AuthComponent.vue';
-import Loading from './components/LoadingComponent.vue';
+import axios from 'axios';
+import Index from './components/IndexComponent.vue';
 
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
 
+Vue.prototype.$axios = axios
+
+
 const app = new Vue({
     el: '#app',
-    render: show => show(Auth)
+    render: h => h(Index)
 });
