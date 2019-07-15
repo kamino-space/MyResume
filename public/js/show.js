@@ -3518,11 +3518,12 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         _this.loading = false;
         _this.keyerror = false;
-        _this.authed = false;
+        _this.authed = true;
         _this.data = res;
       })["catch"](function (error) {
         _this.loading = false;
         _this.keyerror = true;
+        _this.authed = false;
         _this.errormsg = error.response.data;
       });
     }
@@ -3549,6 +3550,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3562,11 +3564,16 @@ __webpack_require__.r(__webpack_exports__);
       authed: false
     };
   },
-  created: function created() {
-    console.log(this.$refs);
-  },
   methods: {
-    getChild: function getChild() {}
+    getChild: function getChild() {
+      console.log("VAL", this.authed);
+      console.log("REF", this.$refs.authitem.authed);
+    }
+  },
+  watch: {
+    ifAuthed: function ifAuthed(value) {
+      this.authed = value;
+    }
   }
 });
 
@@ -97732,6 +97739,7 @@ var render = function() {
                           _c("el-input", {
                             staticClass: "auth-form-item",
                             attrs: {
+                              focus: "",
                               placeholder: "请输入查看密码",
                               "show-password": ""
                             },
@@ -97800,7 +97808,20 @@ var render = function() {
   return _c(
     "div",
     [
-      !_vm.authed ? _c("auth", { ref: "authitem" }) : _vm._e(),
+      _c("button", { on: { click: _vm.getChild } }, [_vm._v("test")]),
+      _vm._v(" "),
+      !_vm.authed
+        ? _c("auth", {
+            ref: "authitem",
+            model: {
+              value: _vm.ifAuthed,
+              callback: function($$v) {
+                _vm.ifAuthed = $$v
+              },
+              expression: "ifAuthed"
+            }
+          })
+        : _vm._e(),
       _vm._v(" "),
       _vm.authed ? _c("loading", { ref: "loadingitem" }) : _vm._e()
     ],

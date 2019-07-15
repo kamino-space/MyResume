@@ -1,6 +1,7 @@
 <template>
   <div>
-    <auth v-if="!authed" ref="authitem" />
+    <button v-on:click="getChild">test</button>
+    <auth v-if="!authed" ref="authitem" v-model="ifAuthed" />
     <loading v-if="authed" ref="loadingitem" />
   </div>
 </template>
@@ -16,11 +17,16 @@ export default {
       authed: false
     };
   },
-  created() {
-    console.log(this.$refs);
-  },
   methods: {
-    getChild: function() {}
+    getChild: function() {
+      console.log("VAL", this.authed);
+      console.log("REF", this.$refs.authitem.authed);
+    }
+  },
+  watch: {
+    ifAuthed: function(value) {
+      this.authed = value;
+    }
   }
 };
 </script>

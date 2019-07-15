@@ -9,7 +9,7 @@
           <el-main class="auth-main" v-loading="loading" element-loading-text="正在验证密码...">
             <div class="auth-form-box">
               <el-alert :title="errormsg" v-if="keyerror" type="error"></el-alert>
-              <el-input class="auth-form-item" placeholder="请输入查看密码" v-model="key" show-password></el-input>
+              <el-input class="auth-form-item" focus placeholder="请输入查看密码" v-model="key" show-password></el-input>
               <el-button class="auth-form-item" v-on:click="submit" type="primary" round>提交</el-button>
             </div>
           </el-main>
@@ -48,12 +48,13 @@ export default {
         .then(res => {
           _this.loading = false;
           _this.keyerror = false;
-          _this.authed = false;
+          _this.authed = true;
           _this.data = res;
         })
         .catch(error => {
           _this.loading = false;
           _this.keyerror = true;
+          _this.authed = false;
           _this.errormsg = error.response.data;
         });
     }
